@@ -1,6 +1,14 @@
 # Using_Kafka_with_ML_model
 A toyexample for Pub/Sub communication, using Kafka Broker, between: an input query app, a simple classification model, and a prediction reading app.
 
+#### Requirements:
+* Classifier (Part A)
+  * Python (3.+), Tensorflow, Numpy, json, argparse, matplotlib
+* PubSub_API (Part B)
+  * Java JDK 11+, confluent_kafka, google.cloud.pubsub_v1, Numpy
+* ML_system (Part C)
+  * all of the above   
+
 # Classifier (Part A)
 ### How to use
 cd to <code>Classifier/</code>  and from the command line run: \
