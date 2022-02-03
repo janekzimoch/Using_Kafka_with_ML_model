@@ -3,7 +3,7 @@ A toyexample for Pub/Sub communication, using Kafka Broker, between: an input qu
 
 # Classifier
 ### How to use
-from command line run: \
+cd to <code>Classifier/</code>  and from the command line run: \
 <code>python main.py</code> - to train and evaluate model \
 or <code>python main.py --dont-train</code> - to just to evaluate on most recently saved model. 
 ### Structure
