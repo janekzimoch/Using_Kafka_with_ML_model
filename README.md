@@ -1,7 +1,12 @@
 # Using_Kafka_with_ML_model
 A toyexample for Pub/Sub communication, using Kafka Broker, between: an input query app, a simple classification model, and a prediction reading app.
 
-## Classifier
+# Classifier
+### How to use
+from command line run: \
+'python main.py' - to train and evaluate model \
+or 'python main.py --dont-train' - to just to evaluate on most recently saved model. 
+### Structure
 This directory contains scripts and classes needed to train, evaluate, and use a simple Classifier model. This is a minimal example of how i build, test, and validate my machine learning models. The structure is as follows: \
 Classifier: \
 ├── Model.py \
@@ -22,7 +27,9 @@ Classifier: \
  * **Saved** is a directory where i save visualisations, logs, and models. 
 
 ### For bigger projects:
-Whenever I work on more complex projects than classifying Fashion MNIST images, I would add additional modules to the structure above, such as: metrics and visualisation callbacks. For problems which require model to train longer, I would implement visualisation callbacks which evaluate internal states of the model or do some visualisations every N epochs, this gives me more insight into whats going on inside of the model. For longer projects I would also setup experiment pipeline, where I log every experiment run into a separete directory, such that I can keep track of the progress and decisions I made during my research. The point of this modularity is to have reusable blocks, which i can leverage, to automate running of new experiments and validating ideas. 
+Whenever I work on more complex projects than classifying Fashion MNIST images, I would add additional modules to the structure above, such as: metrics and visualisation callbacks.  The point of this modularity is to have reusable blocks, which i can leverage, to automate running of new experiments and validating ideas. For problems which require model to train longer, I would implement visualisation callbacks which evaluate internal states of the model or do some visualisations every N epochs, this gives me more insight into whats going on inside of the model. For longer projects I would also setup experiment pipeline, where I log every experiment ran into a separete directory, such that I can keep track of the progress and decisions I made during my research.
+
+
 
 
 ## PubSub_API
