@@ -53,7 +53,7 @@ T demonstrate functionality of the API run in seperate terminals (from within <c
 # ML_system (Part 3)
 Here we have a toy example of a real life system. There are 3 applications:
 * **prediction_query_app.py** which simulates an application that senses/feeds input from the wild to the Brooker topic <code>prediction_request</code>
-* **classifier_model_app.py** reads from <code>prediction_request</> topic, does some processing (that is it uses the classifier model to make a prediction) and then it writes this prediction to a <code>prediction_output</code> topic. 
+* **classifier_model_app.py** reads from <code>prediction_request</code> topic, does some processing (that is it uses the classifier model to make a prediction) and then it writes this prediction to a <code>prediction_output</code> topic. 
 * **prediction_consumer_app** reads from <code>prediction_output</code> topic and prints to a command line.
 
 To run this example, you need to first setup Zookeerper and Broker server as instructed in *PubSub_API* section above, and then call each app script mentioned above in seperate terminals i.e. <code>python prediction_query_app.py</code>.
