@@ -1,7 +1,7 @@
 # Using_Kafka_with_ML_model
 A toyexample for Pub/Sub communication, using Kafka Broker, between: an input query app, a simple classification model, and a prediction reading app.
 
-# Classifier
+# Classifier (Part A)
 ### How to use
 cd to <code>Classifier/</code>  and from the command line run: \
 <code>python main.py</code> - to train and evaluate model \
@@ -32,6 +32,15 @@ Whenever I work on more complex projects than classifying Fashion MNIST images, 
 
 
 
-## PubSub_API
+# PubSub_API (Part 2)
 
+### How to use
+**First, you need to setup a Brooker server**
+You can do it on your local machine by following the instructions in this quickstart tutorial: (https://kafka.apache.org/quickstart) \
 
+**Test API functionality**
+Assuming you set your <code>--bootstrap-server</code> to <code>localhost:9092<\code> inthe previous step then you don't need to modify anything in the <code>PubSub_API/</code> script. Otherwise change <code>SERVER_IP</code> in configs to your <code>host:port</code>. \
+  
+T demonstrate functionality of the API run in seperate terminals (from within <code>PubSub_API/</code> dir): <code>python main_producer.py/</code> which writes integers from 1 to 100 every 3 seconds to topic 'test_A' and <code>python main_consumer.py/</code> which reads from that topic.
+  
+ 
