@@ -3,9 +3,8 @@ cwd = os.getcwd()
 sys.path.append(cwd.split('Vector.ai')[0] + 'Vector.ai/PubSub_API')
 import config as conf
 
-from Producer import Producer_Kafka
-from Consumer import Consumer_Kafka
-from confluent_kafka import Producer
+from Producer import Producer_Kafka, Producer_google_PubSub
+from Consumer import Consumer_Kafka, Consumer_google_PubSub
 import socket
 
 config = {}
@@ -26,14 +25,14 @@ class BrokerProvider:
         if self.service == 'confluent':
             return Producer_Kafka(self.config['producer'])
         elif self.service == 'google_pubsub':
-            return
+            return Producer_google_PubSub(self.config['producer'])
         else:
             raise KeyError(f'{self.service} is not one of the supported service providers.')
 
     def get_consumer(self, process_message=None):
         if self.service == 'confluent':
-            return Consumer_Kafka(self.config['consumer'], msg_processing_func=process_message) #, self.config['consumer']
+            return Consumer_Kafka(self.config['consumer'], msg_processing_func=process_message)
         elif self.service == 'google_pubsub':
-            pass
+            return Consumer_google_PubSub()
         else:
             raise KeyError(f'{self.service} is not one of the supported service providers.')

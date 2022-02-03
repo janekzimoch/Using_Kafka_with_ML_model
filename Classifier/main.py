@@ -9,8 +9,6 @@ from Evaluate import Evaluate, Evaluate_Fashion_Mnist
 from Test import Test_DataLoader
 import config
 
-# TODO:
-# Create github repo
 
 def main():
     args = pars_args()
