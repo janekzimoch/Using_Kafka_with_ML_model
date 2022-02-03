@@ -4,8 +4,8 @@ A toyexample for Pub/Sub communication, using Kafka Broker, between: an input qu
 # Classifier
 ### How to use
 from command line run: \
-'python main.py' - to train and evaluate model \
-or 'python main.py --dont-train' - to just to evaluate on most recently saved model. 
+<code>python main.py</code> - to train and evaluate model \
+or <code>python main.py --dont-train</code> - to just to evaluate on most recently saved model. 
 ### Structure
 This directory contains scripts and classes needed to train, evaluate, and use a simple Classifier model. This is a minimal example of how i build, test, and validate my machine learning models. The structure is as follows: \
 Classifier: \
