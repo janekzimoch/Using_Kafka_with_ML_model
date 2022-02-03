@@ -9,6 +9,8 @@ A toyexample for Pub/Sub communication, using Kafka Broker, between: an input qu
 * ML_system (Part C)
   * all of the above   
 
+Download this repository to a directory called <code>Vector.ai</code>.
+
 # Classifier (Part A)
 ### How to use
 cd to <code>Classifier/</code>  and from the command line run: \
