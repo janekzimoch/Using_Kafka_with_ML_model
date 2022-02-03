@@ -1,0 +1,9 @@
+Run followign commands in seperate terminals.
+
+Open Zookeeper:
+cd /home/janek/kafka_2.13-3.1.0/
+bin/zookeeper-server-start.sh config/zookeeper.properties
+
+Open Broker:
+cd /home/janek/kafka_2.13-3.1.0/
+bin/kafka-server-start.sh config/server.properties
