@@ -5,7 +5,7 @@ A toyexample for Pub/Sub communication, using Kafka Broker, between: an input qu
 ### How to use
 cd to <code>Classifier/</code>  and from the command line run: \
 <code>python main.py</code> - to train and evaluate model \
-or <code>python main.py --dont-train</code> - to just to evaluate on most recently saved model. 
+or <code>python main.py --dont-train</code> - to just evaluate on most recently saved model. 
 ### Structure
 This directory contains scripts and classes needed to train, evaluate, and use a simple Classifier model. This is a minimal example of how i build, test, and validate my machine learning models. The structure is as follows: \
 Classifier: \
@@ -29,13 +29,12 @@ Classifier: \
 ### For bigger projects:
 Whenever I work on more complex projects than classifying Fashion MNIST images, I would add additional modules to the structure above, such as: metrics and visualisation callbacks.  The point of this modularity is to have reusable blocks, which i can leverage, to automate running of new experiments and validating ideas. For problems which require model to train longer, I would implement visualisation callbacks which evaluate internal states of the model or do some visualisations every N epochs, this gives me more insight into whats going on inside of the model. For longer projects I would also setup experiment pipeline, where I log every experiment ran into a separete directory, such that I can keep track of the progress and decisions I made during my research.
 
-### Modifying dataset:
-Return data structure from calling <code>x</code> should have following structure: , to be compatible with other code in <code>main.py</code>. \
-You can easily load a different dataset from <code>tensorflow_dataset</code> by modifying argument in a method call <code>data.load_TF_data('fashion_mnist')</code> to a different dataset name (for list of avilable names see (https://www.tensorflow.org/datasets/catalog/overview) ). \
-If you want to load your own dataset from a local file and it is a dict {'image': ..., 'label': ...} saved in <code>.npz</code> file format then use <code>data.load_data_from_file(file_name)</code> instead.
+### Data Loader
+To load data you need to first instantiate <code>DataLoader</code> object. Then you can call <code>data.load_TF_data('fashion_mnist')</code> or <code>data.load_data_from_file(file_name)</code> to update internal states of the object <code>self.train_ds</code> and <code>self.test_ds</code>. This are dictionaries and to acces input and outputs ndarrays you need to call <code>self.train_ds['image']</code> or <code>self.train_ds['label']</code>.
 
-
-
+### Modyfing dataset:
+You can easily load a different dataset from <code>tensorflow_dataset</code> by modifying argument in a method call <code>data.load_TF_data('fashion_mnist')</code> to a different dataset name than 'fashion_mnist' (for list of avilable names see (https://www.tensorflow.org/datasets/catalog/overview) ). \
+If you want to load your own dataset from a local file and it is a dict {'image': ..., 'label': ...} saved in <code>.npz</code> file format then within a main.py use <code>data.train_ds = data.load_data_from_file(file_name_train)</code> and <code>data.train_ds = data.load_data_from_file(file_name_test)</code> instead.
 
 
 # PubSub_API (Part 2)
