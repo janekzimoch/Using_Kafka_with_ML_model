@@ -1,1 +1,1 @@
-config = {'Producer': 1}
+SERVER_IP = "localhost:9092"

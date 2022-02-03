@@ -22,7 +22,8 @@ def main():
                                         # I wanted to present a clean, minimal solution.  
 
     # Create a Model
-    model = LeNet(input_shape=(None,28,28,1))
+    input_shape = (None, *data.test_ds['image'].shape[1:])
+    model = LeNet(input_shape=input_shape)
     loss = 'sparse_categorical_crossentropy'  # Note: we assume 'lable' vector to be NOT one-hot encoded
                                                 # if you are using one-hot encoded vector use 'categorical_crossentropy' instead
     model.compile(optimizer="Adam", loss=loss, metrics=['accuracy'])
@@ -30,7 +31,7 @@ def main():
     # Train
     if args.train:
         print('Training...')
-        epochs, batch_size = 5, 256
+        epochs, batch_size = args.epochs, args.batch_size
         history = model.fit(x=data.train_ds['image'], 
                             y=data.train_ds['label'], 
                             validation_data=(data.test_ds['image'], data.test_ds['label']),
@@ -57,6 +58,8 @@ def pars_args():
     parser = argparse.ArgumentParser(description='Specify details of how main.py should operate.')
     parser.add_argument('--dont-train', dest='train', action='store_false',
                         help='Use this flag if you just want to evaluate using last saved model.')
+    parser.add_argument('--epochs', default='50', type=int)
+    parser.add_argument('--batch_size', default='256', type=int)
     parser.set_defaults(train=True)
     args = parser.parse_args()
     return args

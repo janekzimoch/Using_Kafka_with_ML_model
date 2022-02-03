@@ -1,18 +1,18 @@
 import sys, os
 cwd = os.getcwd()
 sys.path.append(cwd.split('Vector.ai')[0] + 'Vector.ai/PubSub_API')
+import config as conf
 
 from Producer import Producer_Kafka
 from Consumer import Consumer_Kafka
 from confluent_kafka import Producer
 import socket
 
-SERVER_IP = "localhost:9092"
 config = {}
-config['producer'] = {'bootstrap.servers': SERVER_IP,
+config['producer'] = {'bootstrap.servers': conf.SERVER_IP,
                     'client.id': socket.gethostname()}
 
-config['consumer'] = {'bootstrap.servers': SERVER_IP,
+config['consumer'] = {'bootstrap.servers': conf.SERVER_IP,
         'group.id': "foo",
         'auto.offset.reset': 'smallest'}
 
