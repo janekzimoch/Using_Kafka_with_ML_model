@@ -2,20 +2,19 @@ import sys, os
 cwd = os.getcwd()
 sys.path.append(cwd.split('Vector.ai')[0] + 'Vector.ai/PubSub_API')
 
-from confluent_kafka import Consumer
+from confluent_kafka import Consumer as Kafka_Consumer
 from google.cloud import pubsub_v1
 
 
 class Consumer:
-    def __init__(self, config, msg_processing_func=False):
-        pass
-    
+    def __init__(self, config):
+        self.config = config    
 
 
-class Consumer_Kafka:
+class Consumer_Kafka(Consumer):
     def __init__(self, config, msg_processing_func=False):
-        self.config = config
-        self.consumer = Consumer(config)
+        super().__init__(config)
+        self.consumer = Kafka_Consumer(config)
         self.running = False
         if msg_processing_func == False:
             self.msg_processing_func = self.msg_print
@@ -53,18 +52,19 @@ class Consumer_Kafka:
         self.consumer.close()
 
 
-class Consumer_google_PubSub:
-    def __init__(self, ):
-        pass
+# class Consumer_google_PubSub(Consumer):
+#     def __init__(self, config):
+#         super().__init__(config)
+#         self.consumer = pubsub_v1.SubscriberClient()
+#         self.project_id = self.config['project.id']
 
-    def subscribe(self, topic, subscription):
-        topic_path = self.publisher.topic_path(self._project_id, topic_id)
-		subscription_path = self.subscriber.subscription_path(self._project_id, subscription_id)
-		self._subscription_path = subscription_path
-        pass
+#     def subscribe(self, topics):
+# 		subscription_path = self.consumer.subscription_path(self._project_id, self.subscription_id)
+# 		self._subscription_path = subscription_path
+#         pass
 
-    def read(self, ):
-        pass
+#     def read(self, ):
+#         pass
 
-    def shutdown(self, ):
-        pass
+#     def shutdown(self, ):
+#         pass

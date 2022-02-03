@@ -29,17 +29,17 @@ class Producer_Kafka(Producer):
         broker.create_topics([NewTopic(topic, 1, 1)])
 
 
-class Producer_google_PubSub(Producer):
-    def __init__(self,):
-        self.producer = pubsub_v1.PublisherClient()
-        self.project_id = self.config['client.id']
-        self.topics = {}
+# class Producer_google_PubSub(Producer):
+#     def __init__(self,):
+#         self.producer = pubsub_v1.PublisherClient()
+#         self.project_id = self.config['project.id']
+#         self.topics = {}
 
-    def write(self, topic, msg):
-        self.producer.publish(self.topics[topic], msg)
+#     def write(self, topic, msg):
+#         self.producer.publish(self.topics[topic], msg)
 
-    def create_topic(self, topic):
-        topic_path = self.producer.topic_path(self.project_id, topic)
-        self.topics[topic] = topic_path
+#     def create_topic(self, topic):
+#         topic_path = self.producer.topic_path(self.project_id, topic)
+#         self.topics[topic] = topic_path
     
 
