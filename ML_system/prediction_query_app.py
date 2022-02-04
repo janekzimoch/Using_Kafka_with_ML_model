@@ -21,7 +21,7 @@ def main():
     val_input_data = data.test_ds['image']
 
     # instantiate producer
-    broker = BrokerProvider(service='confluent')
+    broker = BrokerProvider(service='kafka')
     producer = broker.get_producer()
     producer.create_topic(config.PREDICTION_REQUEST)
 

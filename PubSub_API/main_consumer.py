@@ -3,7 +3,7 @@ from Consumer import Consumer
 from Producer import Producer
 import time 
 
-broker = BrokerProvider(service='confluent')
+broker = BrokerProvider(service='kafka')
 consumer = broker.get_consumer()
 print('Subscribe...')
 consumer.subscribe(['test_A'])

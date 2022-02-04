@@ -17,7 +17,7 @@ def msg_print(msg):
 
 def main():
     # instantiate consumer
-    broker = BrokerProvider(service='confluent')
+    broker = BrokerProvider(service='kafka')
     consumer = broker.get_consumer(msg_print)
     consumer.subscribe([config.PREDICTION_OUTPUT])
 

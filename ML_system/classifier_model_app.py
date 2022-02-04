@@ -47,7 +47,7 @@ def main():
     model.load_weights(latest)
 
     # instantiate producer to 'prediction_output' topic
-    broker = BrokerProvider(service='confluent')
+    broker = BrokerProvider(service='kafka')
     producer = broker.get_producer()
     producer.create_topic(config.PREDICTION_OUTPUT)
 

@@ -2,6 +2,7 @@ import sys, os
 cwd = os.getcwd()
 sys.path.append(cwd.split('Vector.ai')[0] + 'Vector.ai/PubSub_API')
 
+from concurrent.futures import TimeoutError
 from confluent_kafka import Consumer as Kafka_Consumer
 from google.cloud import pubsub_v1
 
@@ -52,19 +53,25 @@ class ConsumerKafka(Consumer):
         self.consumer.close()
 
 
-# class ConsumerGooglePubSub(Consumer):
-#     def __init__(self, config):
-#         super().__init__(config)
-#         self.consumer = pubsub_v1.SubscriberClient()
-#         self.project_id = self.config['project.id']
+class ConsumerGooglePubSub(Consumer):
+    def __init__(self, config):
+        super().__init__(config)
+        self.consumer = pubsub_v1.SubscriberClient()
+        self.project_id = self.config['project_id']
 
-#     def subscribe(self, topics):
-# 		subscription_path = self.consumer.subscription_path(self._project_id, self.subscription_id)
-# 		self._subscription_path = subscription_path
-#         pass
+    def subscribe(self, topics):
+        subscription_id = [topics[i] + id(self) for i in range(len(topics))]  #unique identifier of an object subscription to a topic
+		subscription_path = self.consumer.subscription_path(self.project_id, subscription_id)
+        self.streaming_pull_future = self.consumer.subscribe(subscription_path)
 
-#     def read(self, ):
-#         pass
+    def read(self, ):
+        with self.consumer:
+            try:
+                # When `timeout` is not set, result() will block indefinitely,
+                # unless an exception is encountered first.
+                timeout = 5.0
+                self.streaming_pull_future.result(timeout=timeout)
+            except TimeoutError:
+                self.streaming_pull_future.cancel()  # Trigger the shutdown.
+                self.streaming_pull_future.result() 
 
-#     def shutdown(self, ):
-#         pass
