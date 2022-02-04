@@ -6,7 +6,7 @@ import json
 from DataLoader import DataLoader
 from Model import LeNet
 from Evaluate import Evaluate, Evaluate_Fashion_Mnist
-from Test import Test_DataLoader
+from Test import TestDataLoader
 import config
 
 

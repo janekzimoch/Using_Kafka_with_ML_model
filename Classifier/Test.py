@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
 
-class Test_DataLoader:
+class TestDataLoader:
 
     @staticmethod
     def test_TF_dataloader(ds):

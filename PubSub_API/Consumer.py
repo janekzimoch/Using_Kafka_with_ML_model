@@ -11,7 +11,7 @@ class Consumer:
         self.config = config    
 
 
-class Consumer_Kafka(Consumer):
+class ConsumerKafka(Consumer):
     def __init__(self, config, msg_processing_func=False):
         super().__init__(config)
         self.consumer = Kafka_Consumer(config)
@@ -52,7 +52,7 @@ class Consumer_Kafka(Consumer):
         self.consumer.close()
 
 
-# class Consumer_google_PubSub(Consumer):
+# class ConsumerGooglePubSub(Consumer):
 #     def __init__(self, config):
 #         super().__init__(config)
 #         self.consumer = pubsub_v1.SubscriberClient()

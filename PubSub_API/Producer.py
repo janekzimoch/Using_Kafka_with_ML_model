@@ -16,7 +16,7 @@ class Producer:
             print("Message produced: %s" % (str(msg)))
 
 
-class Producer_Kafka(Producer):
+class ProducerKafka(Producer):
     def __init__(self, config):
         super().__init__(config)
         self.producer = Kafka_Producer(self.config)
@@ -29,7 +29,7 @@ class Producer_Kafka(Producer):
         broker.create_topics([NewTopic(topic, 1, 1)])
 
 
-# class Producer_google_PubSub(Producer):
+# class ProducerGooglePubSub(Producer):
 #     def __init__(self,):
 #         self.producer = pubsub_v1.PublisherClient()
 #         self.project_id = self.config['project.id']
