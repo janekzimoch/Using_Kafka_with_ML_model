@@ -5,7 +5,7 @@ import json
 
 from DataLoader import DataLoader
 from Model import LeNet
-from Evaluate import Evaluate, Evaluate_Fashion_Mnist
+from Evaluate import Evaluate, EvaluateFashionMnist
 from Test import TestDataLoader
 import config
 
@@ -21,7 +21,8 @@ def main():
 
     # Create a Model
     input_shape = (None, *data.test_ds['image'].shape[1:])
-    model = LeNet(input_shape=input_shape)
+    num_classes = data.test_ds['label'].shape[1]
+    model = LeNet(input_shape=input_shape, num_classes=num_classes)
     loss = 'sparse_categorical_crossentropy'  # Note: we assume 'lable' vector to be NOT one-hot encoded
                                                 # if you are using one-hot encoded vector use 'categorical_crossentropy' instead
     model.compile(optimizer="Adam", loss=loss, metrics=['accuracy'])
@@ -45,7 +46,7 @@ def main():
 
     # Evaluate
     print('Evaluation...')
-    evaluate = Evaluate_Fashion_Mnist(model, data)
+    evaluate = EvaluateFashionMnist(model, data)
     evaluate.predict()
     evaluate.plot_per_class_accuracy()
     evaluate.plot_train_and_test_accuracy_evolution()

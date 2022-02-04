@@ -71,7 +71,7 @@ class Evaluate:
 
 
 
-class Evaluate_Fashion_Mnist(Evaluate):
+class EvaluateFashionMnist(Evaluate):
     def __init__(self, model, data):
         super().__init__(model, data)
 

@@ -2,7 +2,7 @@ import tensorflow as tf
 
 
 class LeNet(tf.keras.Model):
-    def __init__(self, input_shape):
+    def __init__(self, input_shape, num_classes):
         super().__init__()
         self.conv1 = tf.keras.layers.Conv2D(filters=6, kernel_size=5,activation='sigmoid', padding='same')
         self.avgpool1 = tf.keras.layers.AvgPool2D(pool_size=2, strides=2)
@@ -11,7 +11,7 @@ class LeNet(tf.keras.Model):
         self.flatten = tf.keras.layers.Flatten()
         self.dense1 = tf.keras.layers.Dense(120, activation='sigmoid')
         self.dense2 = tf.keras.layers.Dense(84, activation='sigmoid')
-        self.calssify = tf.keras.layers.Dense(10, activation='softmax')
+        self.calssify = tf.keras.layers.Dense(output_shape, activation='softmax')
 
         self.build(input_shape)
 
