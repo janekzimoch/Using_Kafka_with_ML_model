@@ -4,6 +4,7 @@ sys.path.append(cwd.split('Vector.ai')[0] + 'Vector.ai/PubSub_API')
 
 from confluent_kafka import Producer as Kafka_Producer
 from confluent_kafka.admin import AdminClient, NewTopic
+from google.cloud import pubsub
 
 
 class Producer:
@@ -31,16 +32,19 @@ class ProducerKafka(Producer):
 
 
 class ProducerGooglePubSub(Producer):
-    def __init__(self,):
-        self.producer = pubsub_v1.PublisherClient()
+    def __init__(self, config):
+        super().__init__(config)
+        self.producer = pubsub.PublisherClient()
         self.project_id = self.config['project_id']
         self.topics = {}
 
     def write(self, topic, msg):
+        msg = msg.encode("utf-8")
         self.producer.publish(self.topics[topic], msg)
 
     def create_topic(self, topic):
         topic_path = self.producer.topic_path(self.project_id, topic)
+        topic = self.producer.create_topic(request={"name": topic_path})
         self.topics[topic] = topic_path
     
 
