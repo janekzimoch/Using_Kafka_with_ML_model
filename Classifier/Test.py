@@ -2,7 +2,6 @@ import matplotlib.pyplot as plt
 
 
 class TestDataLoader:
-
     @staticmethod
     def test_TF_dataloader(ds):
         i = 0
@@ -14,6 +13,6 @@ class TestDataLoader:
             plt.figure()
             plt.imshow(image)
             plt.savefig('Saved/Figures/test_dataLoader.png')
-
             i +=1
-            if i>0: break
+            if i > 0: 
+                break

@@ -5,7 +5,8 @@ import json
 
 from DataLoader import DataLoader
 from Model import LeNet
-from Evaluate import Evaluate, EvaluateFashionMnist
+from Evaluate import Evaluate
+from Evaluate import EvaluateFashionMnist
 from Test import TestDataLoader
 import config
 
@@ -62,7 +63,6 @@ def pars_args():
     parser.set_defaults(train=True)
     args = parser.parse_args()
     return args
-
 
 
 if __name__ == "__main__":

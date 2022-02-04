@@ -2,7 +2,6 @@ import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
 import json
-
 import config
 
 
@@ -17,7 +16,6 @@ class Evaluate:
         test_predictions = self.model.predict(self.test_ds['image'])
         np.save(train_predictions, config.PREDICTIONS_DIR + 'train_predictions.npy')
         np.save(test_predictions, config.PREDICTIONS_DIR + 'test_predictions.npy')
-
 
     def get_per_class_accuracy(self, ):
         results = {}
@@ -36,9 +34,8 @@ class Evaluate:
         return results
 
     def plot_per_class_accuracy(self, label_names=0):
-        results = self.get_per_class_accuracy()
-        
-        plt.figure(figsize=(10,6))
+        results = self.get_per_class_accuracy() 
+        plt.figure(figsize=(10, 6))
         barwidth = 0.4
         num_classes = len(results['train'].keys())
         train_acc = [results['train'][i]["accuracy"]for i in range(num_classes)]
@@ -55,11 +52,9 @@ class Evaluate:
         plt.legend()
         plt.savefig(config.FIGURES_DIR + 'per_class_accuracy.png')
 
-
     def plot_train_and_test_accuracy_evolution(self, ):
         history = json.load(open(config.HISTORY_DIR + 'history.json', 'r'))
-        
-        plt.figure(figsize=(10,6))
+        plt.figure(figsize=(10, 6))
         num_epochs = len(history['accuracy'])
         plt.plot(np.arange(num_epochs), history['accuracy'], label='train')
         plt.plot(np.arange(num_epochs), history['val_accuracy'], label='test')
@@ -68,7 +63,6 @@ class Evaluate:
         plt.ylabel('accuracy')
         plt.legend()
         plt.savefig(config.FIGURES_DIR + 'accuracy_evolution.png')
-
 
 
 class EvaluateFashionMnist(Evaluate):
@@ -80,9 +74,6 @@ class EvaluateFashionMnist(Evaluate):
                         5: 'Sandal', 6: 'Shirt', 7: 'Sneaker', 8: 'Bag', 9: 'Ankle boot'}
         super().plot_per_class_accuracy(label_names)
 
-
     def plot_hard_samples(self, ):
         # TODO
         pass
-
-
