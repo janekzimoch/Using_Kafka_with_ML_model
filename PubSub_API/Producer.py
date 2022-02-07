@@ -4,7 +4,7 @@ sys.path.append(cwd.split('Vector.ai')[0] + 'Vector.ai/PubSub_API')
 
 from confluent_kafka import Producer as Kafka_Producer
 from confluent_kafka.admin import AdminClient, NewTopic
-from google.cloud import pubsub
+from google.cloud import pubsub_v1
 
 
 class Producer:
@@ -34,7 +34,7 @@ class ProducerKafka(Producer):
 class ProducerGooglePubSub(Producer):
     def __init__(self, config):
         super().__init__(config)
-        self.producer = pubsub.PublisherClient()
+        self.producer = pubsub_v1.PublisherClient()
         self.project_id = self.config['project_id']
         self.topics = {}
 
@@ -46,5 +46,10 @@ class ProducerGooglePubSub(Producer):
         topic_path = self.producer.topic_path(self.project_id, topic)
         topic = self.producer.create_topic(request={"name": topic_path})
         self.topics[topic] = topic_path
+        print(topic, topic_path)
+
+        # in google pub-sub in order to subscribe to a topic we need to know the topic path.
+        # a list of all topic paths should be somehow accesible for the consumer (aka subscriber)
+        # thus maybe i can keep some .json file which keeps a dict of topic: topic_path
     
 

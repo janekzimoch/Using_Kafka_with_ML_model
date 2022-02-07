@@ -14,8 +14,8 @@ class Evaluate:
     def predict(self,):
         train_predictions = self.model.predict(self.train_ds['image'])
         test_predictions = self.model.predict(self.test_ds['image'])
-        np.save(train_predictions, config.PREDICTIONS_DIR + 'train_predictions.npy')
-        np.save(test_predictions, config.PREDICTIONS_DIR + 'test_predictions.npy')
+        np.save(config.PREDICTIONS_DIR + 'train_predictions.npy', train_predictions)
+        np.save(config.PREDICTIONS_DIR + 'test_predictions.npy', test_predictions)
 
     def get_per_class_accuracy(self, ):
         results = {}

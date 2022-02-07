@@ -11,7 +11,7 @@ class LeNet(tf.keras.Model):
         self.flatten = tf.keras.layers.Flatten()
         self.dense1 = tf.keras.layers.Dense(120, activation='sigmoid')
         self.dense2 = tf.keras.layers.Dense(84, activation='sigmoid')
-        self.calssify = tf.keras.layers.Dense(output_shape, activation='softmax')
+        self.calssify = tf.keras.layers.Dense(num_classes, activation='softmax')
         self.build(input_shape)
 
     def call(self, inputs):

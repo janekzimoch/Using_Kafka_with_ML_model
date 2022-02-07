@@ -3,7 +3,7 @@ from Consumer import Consumer
 from Producer import Producer
 import time 
 
-broker = BrokerProvider(service='kafka')
+broker = BrokerProvider(service='google')
 consumer = broker.get_consumer()
 print('Subscribe...')
 consumer.subscribe(['test_A'])

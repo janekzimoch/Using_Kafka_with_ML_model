@@ -3,7 +3,7 @@ from Consumer import Consumer
 from Producer import Producer
 import time 
 
-broker = BrokerProvider(service='kafka')
+broker = BrokerProvider(service='google')
 producer = broker.get_producer()
 producer.create_topic('test_A')
 for i in range(100):

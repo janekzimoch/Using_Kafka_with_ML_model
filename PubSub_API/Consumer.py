@@ -4,7 +4,7 @@ sys.path.append(cwd.split('Vector.ai')[0] + 'Vector.ai/PubSub_API')
 
 from concurrent.futures import TimeoutError
 from confluent_kafka import Consumer as Kafka_Consumer
-from google.cloud import pubsub
+from google.cloud import pubsub_v1
 
 
 class Consumer:
@@ -56,7 +56,7 @@ class ConsumerKafka(Consumer):
 class ConsumerGooglePubSub(Consumer):
     def __init__(self, config):
         super().__init__(config)
-        self.consumer = pubsub.SubscriberClient()
+        self.consumer = pubsub_v1.SubscriberClient()
         self.project_id = self.config['project_id']
 
     def subscribe(self, topics):

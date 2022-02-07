@@ -1,6 +1,7 @@
 import os, sys
 import argparse
 import tensorflow as tf
+import numpy as np
 import json
 
 from DataLoader import DataLoader
@@ -22,7 +23,7 @@ def main():
 
     # Create a Model
     input_shape = (None, *data.test_ds['image'].shape[1:])
-    num_classes = data.test_ds['label'].shape[1]
+    num_classes = np.max(data.test_ds['label'])+1  # +1 because it's 0 indexed #.shape[1]
     model = LeNet(input_shape=input_shape, num_classes=num_classes)
     loss = 'sparse_categorical_crossentropy'  # Note: we assume 'lable' vector to be NOT one-hot encoded
                                                 # if you are using one-hot encoded vector use 'categorical_crossentropy' instead
@@ -58,7 +59,7 @@ def pars_args():
     parser = argparse.ArgumentParser(description='Specify details of how main.py should operate.')
     parser.add_argument('--dont-train', dest='train', action='store_false',
                         help='Use this flag if you just want to evaluate using last saved model.')
-    parser.add_argument('--epochs', default='50', type=int)
+    parser.add_argument('--epochs', default='30', type=int)
     parser.add_argument('--batch_size', default='256', type=int)
     parser.set_defaults(train=True)
     args = parser.parse_args()
